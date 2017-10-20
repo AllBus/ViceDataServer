@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.kos.voicedata.protobuf;
+
+message VoiceText{
+    string text = 1;
+
+}
+
+message SendData {
+    int32 kind = 1;
+    oneof data {
+        VoiceText voice = 2;
+    }
+}
+
+message TransferResponse {
+    int32 error = 1;
+    string message = 2;
+}
+
+service Transfer {
+    rpc say(SendData) returns (TransferResponse);
+}
